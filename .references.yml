@@ -1,0 +1,7 @@
+references:
+    - project: citation-file-format/citation-file-format
+      learned: CITATION.cff schema design — YAML-based metadata for software citation
+      applied: .references.yml schema
+    - project: python/cpython
+      learned: "import this — the Zen of Python as a philosophy statement embedded in the tool"
+      applied: zen message

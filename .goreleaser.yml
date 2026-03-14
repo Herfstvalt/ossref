@@ -1,0 +1,33 @@
+version: 2
+project_name: ossref
+builds:
+  - main: .
+    binary: ossref
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+checksum:
+  name_template: checksums.txt
+changelog:
+  sort: asc
+brews:
+  - repository:
+      owner: herfstvalt
+      name: homebrew-tap
+    homepage: https://github.com/herfstvalt/ossref
+    description: Track the intellectual lineage of your open source project
+    license: MIT
+    install: |
+      bin.install "ossref"
+    test: |
+      system "#{bin}/ossref", "help"

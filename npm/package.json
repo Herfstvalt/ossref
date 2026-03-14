@@ -1,0 +1,27 @@
+{
+  "name": "ossref",
+  "version": "0.1.0",
+  "description": "Track the intellectual lineage of your open source project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herfstvalt/ossref.git"
+  },
+  "bin": {
+    "ossref": "bin/ossref"
+  },
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "keywords": [
+    "oss",
+    "reference",
+    "citation",
+    "attribution",
+    "open-source"
+  ],
+  "files": [
+    "bin/",
+    "install.js"
+  ]
+}
