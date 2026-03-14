@@ -64,11 +64,12 @@ This creates an empty `.references.yml`.
 ossref add
 ```
 ```
-  project: rustdesk/rustdesk
-  learned: Remote desktop relay architecture — NAT traversal via rendezvous server
-  applied: services/relay/
+  project: python/cpython
+  learned: import this — embedding a philosophy statement directly in the tool
+  applied: zen message
 
   ✓ Reference added. 1 references across 1 projects.
+  ✓ REFERENCES.md updated.
 ```
 
 **3. Keep adding as you build:**
@@ -76,12 +77,15 @@ ossref add
 ossref add
 ```
 ```
-  project: opencode-ai/opencode
-  learned: TUI page-based navigation with tea.Model dispatch
-  applied: cmd/tui.go
+  project: citation-file-format/citation-file-format
+  learned: CITATION.cff schema design — YAML-based file convention for software citation metadata
+  applied: .references.yml schema
 
   ✓ Reference added. 2 references across 2 projects.
+  ✓ REFERENCES.md updated.
 ```
+
+Every `ossref add` auto-generates a `REFERENCES.md` that renders on GitHub — no README needed.
 
 **4. View your references:**
 ```bash
@@ -104,10 +108,14 @@ ossref
 
   This project stands on the shoulders of:
 
-    rustdesk → Remote desktop relay architecture — NAT traversal via rendezvous server
-    opencode → TUI page-based navigation with tea.Model dispatch
+    citation-file-format → CITATION.cff schema design — YAML-based file convention for software citation metadata
+    cpython              → import this — embedding a philosophy statement directly in the tool
+    go                   → Go Proverbs — concise, opinionated design principles as community culture
+    spdx-spec            → SBOM standardization — structured machine-readable software metadata as a file convention
+    goreleaser           → Cross-platform binary release pipeline with Homebrew tap auto-publishing
+    esbuild              → npm wrapper pattern — postinstall script that downloads a platform-specific Go binary
 
-  2 references across 2 projects
+  6 references across 6 projects
   .references.yml
 
 ```
@@ -117,11 +125,19 @@ ossref
 ossref graph
 ```
 ```
-  myproject
-  ├── rustdesk
-  │   └── Remote desktop relay architecture — NAT traversal via rendezvous server
-  └── opencode
-      └── TUI page-based navigation with tea.Model dispatch
+  Herfstvalt/ossref
+  ├── citation-file-format
+  │   └── CITATION.cff schema design — YAML-based file convention for software citation metadata
+  ├── cpython
+  │   └── import this — embedding a philosophy statement directly in the tool
+  ├── go
+  │   └── Go Proverbs — concise, opinionated design principles as community culture
+  ├── spdx-spec
+  │   └── SBOM standardization — structured machine-readable software metadata as a file convention
+  ├── goreleaser
+  │   └── Cross-platform binary release pipeline with Homebrew tap auto-publishing
+  └── esbuild
+      └── npm wrapper pattern — postinstall script that downloads a platform-specific Go binary
 ```
 
 **6. Generate a visual graph:**
@@ -144,23 +160,33 @@ ossref help         Show this help
 
 ## Example .references.yml
 
+This is [ossref's own `.references.yml`](.references.yml) — we use the tool on itself:
+
 ```yaml
 references:
-    - project: rustdesk/rustdesk
-      learned: Remote desktop relay architecture — NAT traversal via rendezvous server
-      applied: services/relay/
+    - project: citation-file-format/citation-file-format
+      learned: CITATION.cff schema design — YAML-based file convention for software citation metadata
+      applied: .references.yml schema
 
-    - project: opencode-ai/opencode
-      learned: TUI page-based navigation with tea.Model dispatch
-      applied: cmd/tui.go
+    - project: python/cpython
+      learned: import this — embedding a philosophy statement directly in the tool
+      applied: zen message
 
-    - project: openai/codex
-      learned: Git worktree isolation for parallel agent execution
-      applied: internal/runtime/
+    - project: golang/go
+      learned: Go Proverbs — concise, opinionated design principles as community culture
+      applied: zen message tone and structure
 
-    - project: nicbarker/clay
-      learned: Session list UX — grouped by recency, status dots, minimal chrome
-      applied: apps/mobile/lib/features/session/
+    - project: spdx/spdx-spec
+      learned: SBOM standardization — structured machine-readable software metadata as a file convention
+      applied: .references.yml as a committed file convention
+
+    - project: goreleaser/goreleaser
+      learned: Cross-platform binary release pipeline with Homebrew tap auto-publishing
+      applied: .goreleaser.yml, release workflow
+
+    - project: esbuild/esbuild
+      learned: npm wrapper pattern — postinstall script that downloads a platform-specific Go binary
+      applied: npm/install.js
 ```
 
 ## The Zen of Open Source Referencing
