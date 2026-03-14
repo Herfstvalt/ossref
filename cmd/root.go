@@ -27,6 +27,8 @@ func Execute() error {
 		return runList()
 	case "graph":
 		return runGraph()
+	case "render":
+		return runRender()
 	case "help", "--help", "-h":
 		return runHelp()
 	default:
@@ -137,7 +139,9 @@ func runAdd() error {
 		Applied: applied,
 	}
 
-	if err := refs.Add(path, ref); err != nil {
+	projectName := detectProjectName(cwd)
+
+	if err := refs.Add(path, ref, projectName); err != nil {
 		return err
 	}
 
@@ -151,7 +155,9 @@ func runAdd() error {
 		projects[r.Project] = true
 	}
 
-	fmt.Printf("\n  ✓ Reference added. %d references across %d projects.\n\n", len(f.References), len(projects))
+	fmt.Printf("\n  ✓ Reference added. %d references across %d projects.\n", len(f.References), len(projects))
+	fmt.Println("  ✓ REFERENCES.md updated.")
+	fmt.Println()
 	return nil
 }
 
@@ -276,17 +282,43 @@ func runGraph() error {
 	return nil
 }
 
+func runRender() error {
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	path, err := refs.Find(cwd)
+	if err != nil {
+		return fmt.Errorf("no .references.yml found — run `ossref init` first")
+	}
+
+	f, err := refs.Load(path)
+	if err != nil {
+		return err
+	}
+
+	projectName := detectProjectName(cwd)
+	if err := refs.WriteReferencesMarkdown(path, projectName, f); err != nil {
+		return err
+	}
+
+	fmt.Println("  ✓ REFERENCES.md updated.")
+	return nil
+}
+
 func runHelp() error {
 	fmt.Println(`ossref — The Zen of Open Source Referencing
 
 Usage:
-  ossref            Show zen message and project references
-  ossref init       Create a new .references.yml
-  ossref add        Add a reference interactively
-  ossref list       List all references
-  ossref graph      Show reference dependency graph (terminal)
+  ossref              Show zen message and project references
+  ossref init         Create a new .references.yml
+  ossref add          Add a reference interactively
+  ossref list         List all references
+  ossref graph        Show reference dependency graph (terminal)
   ossref graph --svg  Generate references.svg visual graph
-  ossref help       Show this help`)
+  ossref render       Regenerate REFERENCES.md
+  ossref help         Show this help`)
 	return nil
 }
 

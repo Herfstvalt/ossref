@@ -60,12 +60,23 @@ func Init(dir string) (string, error) {
 	return p, nil
 }
 
-// Add appends a reference and saves.
-func Add(path string, ref Reference) error {
+// Add appends a reference, saves, and regenerates REFERENCES.md.
+func Add(path string, ref Reference, projectName string) error {
 	f, err := Load(path)
 	if err != nil {
 		return err
 	}
 	f.References = append(f.References, ref)
-	return Save(path, f)
+	if err := Save(path, f); err != nil {
+		return err
+	}
+	return WriteReferencesMarkdown(path, projectName, f)
+}
+
+// WriteReferencesMarkdown generates REFERENCES.md next to .references.yml.
+func WriteReferencesMarkdown(refsPath string, projectName string, f *File) error {
+	dir := filepath.Dir(refsPath)
+	mdPath := filepath.Join(dir, renderFileName)
+	md := RenderMarkdown(projectName, f)
+	return os.WriteFile(mdPath, []byte(md), 0644)
 }
