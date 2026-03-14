@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/herfstvalt/ossref/internal/graph"
 	"github.com/herfstvalt/ossref/internal/refs"
 	"github.com/herfstvalt/ossref/internal/zen"
 )
@@ -208,13 +209,33 @@ func runGraph() error {
 		return nil
 	}
 
-	// Detect project name from git remote or directory name
 	projectName := detectProjectName(cwd)
 
+	// Check for --svg flag
+	svgOutput := false
+	outputFile := "references.svg"
+	for i, arg := range os.Args {
+		if arg == "--svg" {
+			svgOutput = true
+			if i+1 < len(os.Args) && !strings.HasPrefix(os.Args[i+1], "-") {
+				outputFile = os.Args[i+1]
+			}
+		}
+	}
+
+	if svgOutput {
+		svg := graph.RenderSVG(projectName, f)
+		if err := os.WriteFile(outputFile, []byte(svg), 0644); err != nil {
+			return err
+		}
+		fmt.Printf("  ✓ Graph written to %s\n", outputFile)
+		return nil
+	}
+
+	// Terminal tree output
 	fmt.Println()
 	fmt.Printf("  %s\n", projectName)
 
-	// Group references by project
 	grouped := map[string][]refs.Reference{}
 	order := []string{}
 	for _, r := range f.References {
@@ -263,7 +284,8 @@ Usage:
   ossref init       Create a new .references.yml
   ossref add        Add a reference interactively
   ossref list       List all references
-  ossref graph      Show reference dependency graph
+  ossref graph      Show reference dependency graph (terminal)
+  ossref graph --svg  Generate references.svg visual graph
   ossref help       Show this help`)
 	return nil
 }
