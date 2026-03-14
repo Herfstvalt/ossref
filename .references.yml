@@ -1,7 +1,19 @@
 references:
     - project: citation-file-format/citation-file-format
-      learned: CITATION.cff schema design — YAML-based metadata for software citation
+      learned: CITATION.cff schema design — YAML-based file convention for software citation metadata
       applied: .references.yml schema
     - project: python/cpython
-      learned: "import this — the Zen of Python as a philosophy statement embedded in the tool"
+      learned: "import this — embedding a philosophy statement directly in the tool as a first-class feature"
       applied: zen message
+    - project: golang/go
+      learned: Go Proverbs — concise, opinionated design principles as community culture
+      applied: zen message tone and structure
+    - project: spdx/spdx-spec
+      learned: SBOM standardization — structured machine-readable software metadata as a file convention
+      applied: .references.yml as a committed file convention
+    - project: goreleaser/goreleaser
+      learned: Cross-platform binary release pipeline with Homebrew tap auto-publishing
+      applied: .goreleaser.yml, release workflow
+    - project: esbuild/esbuild
+      learned: npm wrapper pattern — postinstall script that downloads a platform-specific Go binary
+      applied: npm/install.js
