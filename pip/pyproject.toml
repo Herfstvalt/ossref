@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ossref"
+version = "0.1.0"
+description = "Track the intellectual lineage of your open source project"
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/herfstvalt/ossref"
+
+[project.scripts]
+ossref = "ossref.cli:main"

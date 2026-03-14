@@ -8,28 +8,33 @@ Track the intellectual lineage of your project. Not dependencies — **decisions
 
 ## Install
 
-**macOS (Homebrew):**
+Pick whichever method matches your workflow — no Go required for any of these:
+
+**Quick install (macOS/Linux):**
+```bash
+curl -sSL https://raw.githubusercontent.com/herfstvalt/ossref/main/install.sh | sh
+```
+
+**Homebrew (macOS/Linux):**
 ```bash
 brew install herfstvalt/tap/ossref
 ```
 
+**npm (JavaScript/TypeScript developers):**
+```bash
+npx ossref
+# or install globally
+npm install -g ossref
+```
+
+**pip (Python developers):**
+```bash
+pip install ossref
+```
+
 **Download binary:**
 
-Grab the latest release for your platform from [Releases](https://github.com/herfstvalt/ossref/releases), extract, and move to your PATH:
-
-```bash
-# macOS (Apple Silicon)
-curl -sL https://github.com/herfstvalt/ossref/releases/latest/download/ossref_darwin_arm64.tar.gz | tar xz
-sudo mv ossref /usr/local/bin/
-
-# macOS (Intel)
-curl -sL https://github.com/herfstvalt/ossref/releases/latest/download/ossref_darwin_amd64.tar.gz | tar xz
-sudo mv ossref /usr/local/bin/
-
-# Linux (amd64)
-curl -sL https://github.com/herfstvalt/ossref/releases/latest/download/ossref_linux_amd64.tar.gz | tar xz
-sudo mv ossref /usr/local/bin/
-```
+Grab the latest release for your platform from [Releases](https://github.com/herfstvalt/ossref/releases).
 
 **From source (requires Go):**
 ```bash

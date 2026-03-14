@@ -20,3 +20,14 @@ checksum:
   name_template: checksums.txt
 changelog:
   sort: asc
+brews:
+  - repository:
+      owner: herfstvalt
+      name: homebrew-tap
+    homepage: https://github.com/herfstvalt/ossref
+    description: Track the intellectual lineage of your open source project
+    license: MIT
+    install: |
+      bin.install "ossref"
+    test: |
+      system "#{bin}/ossref", "help"
