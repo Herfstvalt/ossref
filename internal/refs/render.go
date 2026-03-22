@@ -13,7 +13,7 @@ func RenderMarkdown(projectName string, f *File) string {
 
 	b.WriteString(fmt.Sprintf("# %s — References\n\n", projectName))
 	b.WriteString("> *Every project stands on the shoulders of others.*\n\n")
-	b.WriteString("This project's architecture and design decisions were shaped by the following open source projects.\n\n")
+	b.WriteString("This project's architecture and design decisions were shaped by the following projects.\n\n")
 
 	if len(f.References) == 0 {
 		b.WriteString("*No references yet.*\n")
